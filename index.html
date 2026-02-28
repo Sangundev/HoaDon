@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Báo giá chuyên nghiệp - Omicat Design</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+    
+    :root {
+      --primary: #0f172a;
+      --momo: #a50064;
+      --bank: #0284c7;
+      --bg: #f8fafc;
+      --card: #ffffff;
+    }
+
+    * { box-sizing: border-box; -webkit-print-color-adjust: exact; }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg); color: #475569; margin: 0; padding: 40px 20px; line-height: 1.6;
+    }
+
+    .container { max-width: 850px; margin: 0 auto; }
+
+    .card {
+      background: var(--card); border-radius: 24px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.03);
+      padding: 60px; position: relative; overflow: hidden;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    .card::before {
+      content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 8px;
+      background: linear-gradient(90deg, var(--bank), var(--momo));
+    }
+
+    /* --- HEADER & INFO (CODE CŨ) --- */
+    header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 50px; gap: 20px; }
+    .logo-group { display: flex; align-items: center; gap: 20px; }
+    .logo { 
+      width: 60px; height: 60px; border-radius: 12px; object-fit: contain; 
+      background: #ffffff; padding: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      border: 1px solid #f1f5f9;
+    }
+    .brand-info h1 { font-size: 24px; margin: 0; color: var(--primary); font-weight: 800; }
+    .brand-info p { margin: 4px 0 0; font-size: 14px; color: #64748b; }
+
+    .invoice-meta { text-align: right; }
+    .status { 
+      display: inline-block; padding: 6px 16px; border-radius: 100px; 
+      background: #f0fdf4; color: #166534; font-size: 11px; font-weight: 700; margin-bottom: 12px;
+    }
+
+    .info-grid { 
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; 
+      padding: 25px; background: #f1f5f9; border-radius: 20px; margin-bottom: 40px;
+    }
+    .info-item span { display: block; font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 4px; }
+    .info-item div { font-size: 13px; color: var(--primary); font-weight: 600; }
+
+    /* --- NỘI DUNG & THANH TOÁN (CODE MỚI) --- */
+    table { width: 100%; border-collapse: separate; border-spacing: 0 12px; }
+    td { background: #fff; padding: 20px 15px; border-top: 1px solid #f1f5f9; border-bottom: 1px solid #f1f5f9; }
+    td:first-child { border-left: 1px solid #f1f5f9; border-radius: 15px 0 0 15px; }
+    td:last-child { border-right: 1px solid #f1f5f9; border-radius: 0 15px 15px 0; text-align: right; }
+    
+    .item-title { font-weight: 700; color: var(--primary); font-size: 15px; }
+    .item-sub { font-size: 12px; color: #64748b; margin-top: 2px; }
+    .price-main { color: var(--bank); font-weight: 800; font-size: 16px; display: block; }
+    .price-sub { font-size: 11px; color: #94a3b8; font-weight: 400; }
+
+    .summary-section { margin-top: 25px; border-top: 1px dashed #e2e8f0; padding-top: 25px; }
+    .s-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; }
+    .total-big { 
+      margin-top: 15px; color: var(--primary); font-size: 26px; font-weight: 800;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .payment-options { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+    .pay-card { padding: 25px; border-radius: 20px; border: 1px solid transparent; }
+    .pay-card.bank { background: #f0f9ff; border-color: #e0f2fe; color: var(--bank); }
+    .pay-card.momo { background: #fdf2f8; border-color: #fce7f3; color: var(--momo); }
+    .pay-card h4 { margin: 0 0 12px; font-size: 14px; font-weight: 800; text-transform: uppercase; }
+    .pay-card p { margin: 4px 0; font-size: 13px; font-weight: 600; }
+
+    /* --- PHẦN GHI CHÚ --- */
+    .note-footer { 
+      margin-top: 35px; padding: 20px; background: #fffbeb; border-radius: 15px; 
+      font-size: 12px; color: #92400e; border: 1px solid #fef3c7;
+    }
+
+    .actions { display: flex; gap: 15px; justify-content: center; margin-top: 50px; }
+    .btn { 
+      padding: 16px 35px; border-radius: 16px; font-weight: 700; cursor: pointer; 
+      border: none; font-size: 14px; transition: 0.3s;
+    }
+    .btn-dark { background: var(--primary); color: white; }
+    .btn-light { background: #f1f5f9; color: #475569; }
+
+    @media (max-width: 768px) {
+      .card { padding: 30px 20px; }
+      header { flex-direction: column; align-items: center; text-align: center; }
+      .invoice-meta { text-align: center; }
+      .info-grid { grid-template-columns: 1fr 1fr; }
+      .payment-options { grid-template-columns: 1fr; }
+      .total-big { font-size: 22px; }
+      .actions { flex-direction: column; }
+      table, thead, tbody, th, td, tr { display: block; }
+      td { text-align: left !important; margin-bottom: 10px; border-radius: 15px !important; border: 1px solid #f1f5f9 !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="card">
+    <header>
+      <div class="logo-group">
+        <img src="Logo/1.png" alt="Logo" class="logo">
+        <div class="brand-info">
+          <h1>OMICAT</h1>
+          <p>Creative Design Studio</p>
+        </div>
+      </div>
+      <div class="invoice-meta">
+        <span class="status">● Đã triển khai</span>
+        <div style="font-size: 11px; color: #94a3b8;">Mã đơn: <strong>#2026-CFB12</strong></div>
+      </div>
+    </header>
+
+    <div class="info-grid">
+      <div class="info-item"><span>Khách hàng</span><div>Minh Nguyen Hicat</div></div>
+      <div class="info-item"><span>Nhận đơn</span><div>26/2/2026</div></div>
+      <div class="info-item"><span>Hoàn tất</span><div>28/2/2026</div></div>
+      <div class="info-item"><span>Designer</span><div>Ngọc Sang</div></div>
+    </div>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <div class="item-title">Banner Cát Đậu Nành (06 hình)</div>
+            <div class="item-sub">Thiết kế tối ưu tỷ lệ Click sàn</div>
+          </td>
+          <td>
+            <span class="price-main">750,000</span>
+            <span class="price-sub">125k/hình</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-title">Banner Cát Vệ Sinh (06 hình)</div>
+            <div class="item-sub">Thiết kế đồng bộ thương hiệu</div>
+          </td>
+          <td>
+            <span class="price-main">750,000</span>
+            <span class="price-sub">125k/hình</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="summary-section">
+      <div class="s-row"><span>Tạm tính (12 hình):</span><span>1,500,000 VND</span></div>
+      <div class="s-row" style="color: #e11d48; font-weight: 600;"><span>Đặt cọc (Đã thanh toán):</span><span>- 0 VND</span></div>
+      <div class="total-big">
+        <span style="font-size: 14px; font-weight: 600; color: #94a3b8;">TỔNG THANH TOÁN</span>
+        <span>1,500,000 VND</span>
+      </div>
+    </div>
+
+    <div class="payment-options">
+      <div class="pay-card bank">
+        <h4>🏦 SACOMBANK</h4>
+        <p>STK: 050121592972</p>
+        <p>NGUYEN NGOC SANG</p>
+      </div>
+      <div class="pay-card momo">
+        <h4>💖 VÍ MOMO</h4>
+        <p>SĐT: 0374059466</p>
+        <p>NGUYEN NGOC SANG</p>
+      </div>
+    </div>
+
+    <div class="note-footer">
+  <strong>✨ Cam kết chất lượng:</strong> Thiết kế được tinh chỉnh theo phong cách Minimalist hiện đại, tối ưu hiển thị trên di động giúp tăng hiệu quả bán hàng. Mình hỗ trợ chỉnh sửa các chi tiết nhỏ để sản phẩm hoàn hảo nhất. Vui lòng hoàn tất thanh toán để nhận bàn giao trọn bộ file thiết kế chất lượng cao.
+</div>
+
+    <div class="actions">
+      <button class="btn btn-dark" onclick="window.print()">📥 Xuất PDF / In</button>
+      <button class="btn btn-light" onclick="copyHTML()">🔗 Sao chép Link</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function copyHTML() {
+    navigator.clipboard.writeText(document.documentElement.outerHTML).then(() => {
+      alert('Đã sao chép nội dung báo giá!');
+    });
+  }
+</script>
+
+</body>
+</html>
